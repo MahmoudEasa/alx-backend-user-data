@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-""" A function filter_datum that returns the log message obfuscated
+""" A function filter_datum that
+    returns the log message obfuscated
 """
 
 import logging
