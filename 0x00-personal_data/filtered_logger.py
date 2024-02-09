@@ -77,6 +77,7 @@ def main():
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM users;")
     logger = get_logger()
+
     for row in cursor:
         result = ''
         for key, val in row.items():
