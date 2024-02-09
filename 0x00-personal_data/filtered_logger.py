@@ -74,11 +74,14 @@ def main():
         and retrieve all rows in the users table
     """
     db = get_db()
-    cursor = db.cursor()
+    cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM users;")
     logger = get_logger()
     for row in cursor:
-        logger.info(row)
+        result = ''
+        for key, val in row.items():
+            result += f"{key}={val}; "
+        logger.info(result)
 
     cursor.close()
     db.close()
