@@ -39,11 +39,13 @@ class RedactingFormatter(logging.Formatter):
 
 def get_logger() -> logging.Logger:
     """ Returns a logging.Logger object """
-    return (logging.getLogger("user_data",
-                              level=logging.INFO,
-                              propagate=False,
-                              handlers=[
-                                  ogging.StreamHandler(
-                                      formatter=RedactingFormatter(
-                                          PII_FIELDS))]
-                              ))
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    formatter = RedactingFormatter(PII_FIELDS)
+    handler = logging.StreamHandler()
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+    return (logger)
