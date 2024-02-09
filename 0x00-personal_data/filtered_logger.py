@@ -7,6 +7,8 @@
 import logging
 from typing import List
 import re
+import os
+from mysql.connector import connection
 
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
@@ -49,3 +51,19 @@ def get_logger() -> logging.Logger:
     logger.addHandler(handler)
 
     return (logger)
+
+
+def get_db() -> connection.MySQLConnection:
+    """ Returns a connector to the database
+        pip3 install mysql-connector-python
+    """
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    password = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    db_host = os.getenv('PERSONAL_DATA_DB_HOST')
+    db_name = os.getenv('PERSONAL_DATA_DB_NAME')
+
+    return (connection.MySQLConnection(
+            host=db_host,
+            database=db_name,
+            username=username,
+            password=password))
