@@ -60,10 +60,29 @@ def get_db() -> connection.MySQLConnection:
     username = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
     password = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
     db_host = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
-    db_name = os.getenv('PERSONAL_DATA_DB_NAME', '')
+    db_name = os.getenv('PERSONAL_DATA_DB_NAME')
 
-    return connection.MySQLConnection(
+    return (connection.MySQLConnection(
             host=db_host,
             database=db_name,
             username=username,
-            password=password)
+            password=password))
+
+
+def main():
+    """ Obtain a database connection using get_db
+        and retrieve all rows in the users table
+    """
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    logger = get_logger()
+    for row in cursor:
+        print(row)
+
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
