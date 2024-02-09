@@ -42,6 +42,8 @@ def get_logger() -> logging.Logger:
     return (logging.getLogger("user_data",
                               level=logging.INFO,
                               propagate=False,
-                              format=RedactingFormatter(PII_FIELDS),
-                              handlers=[logging.StreamHandler()]
+                              handlers=[
+                                  ogging.StreamHandler(
+                                      formatter=RedactingFormatter(
+                                          PII_FIELDS))]
                               ))
