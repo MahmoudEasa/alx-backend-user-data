@@ -28,3 +28,8 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ Returns None - request will be the Flask request object """
         return (None)
+
+
+class BasicAuth(Auth):
+    """ Empty Class """
+    pass
