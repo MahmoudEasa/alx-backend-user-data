@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ Manage the API authentication """
+from typing import TypeVar
 from api.v1.auth.auth import Auth
+from models.user import User
 from uuid import uuid4
 
 
@@ -22,3 +24,9 @@ class SessionAuth(Auth):
             return (None)
 
         return (SessionAuth.user_id_by_session_id.get(session_id))
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """  (overload) returns a User instance based on a cookie value """
+        cookie = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(cookie)
+        return (User.get(user_id))
