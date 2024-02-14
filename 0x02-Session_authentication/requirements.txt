@@ -1,0 +1,10 @@
+Flask
+Flask-Cors
+Jinja2
+requests
+pycodestyle
+
+
+# python3 -m venv venv
+# source venv/bin/activate
+# deactivate
