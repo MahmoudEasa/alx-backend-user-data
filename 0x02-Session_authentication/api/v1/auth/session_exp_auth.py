@@ -30,7 +30,7 @@ class SessionExpAuth(SessionAuth):
         if not session_id:
             return (None)
 
-        session_obj = super().user_id_for_session_id(session_id)
+        session_obj = self.user_id_by_session_id.get(session_id)
         if not session_obj:
             return (None)
 
