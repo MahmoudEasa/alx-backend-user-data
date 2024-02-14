@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Manage the API authentication """
 from os import getenv
-from typing import List, TypeVar, Union
+from typing import List, TypeVar
 from flask import request
 
 
@@ -37,7 +37,7 @@ class Auth:
         """ Returns None - request will be the Flask request object """
         return (None)
 
-    def session_cookie(self, request=None) -> Union[str | None]:
+    def session_cookie(self, request=None) -> str:
         """ Returns a cookie value from a request """
         if not request:
             return (None)
