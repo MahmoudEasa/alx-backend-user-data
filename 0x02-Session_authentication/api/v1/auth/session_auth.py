@@ -14,4 +14,4 @@ class SessionAuth(Auth):
             return (None)
         session_id = uuid4()
         SessionAuth.user_id_by_session_id[str(session_id)] = user_id
-        return (session_id)
+        return (str(session_id))
