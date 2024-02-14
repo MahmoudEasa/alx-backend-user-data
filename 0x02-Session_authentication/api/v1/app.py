@@ -32,17 +32,20 @@ def before_request():
         paths = [
             '/api/v1/status/',
             '/api/v1/unauthorized/',
-            '/api/v1/forbidden/'
+            '/api/v1/forbidden/',
             '/api/v1/auth_session/login/'
             ]
         if auth.require_auth(request.path, paths):
-            if not auth.authorization_header(request) and\
-                    not auth.session_cookie(request):
+            user = auth.current_user(request)
+            authorization = auth.authorization_header(request)
+            cookie = auth.session_cookie(request)
+
+            if not authorization and not cookie:
                 abort(401)
-            if not auth.current_user(request):
+            if not user:
                 abort(403)
 
-        request.current_user = auth.current_user(request)
+            request.current_user = user
 
 
 @app.errorhandler(404)
