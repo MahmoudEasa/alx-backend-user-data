@@ -14,9 +14,9 @@ class SessionAuth(Auth):
         """ Creates a Session ID for a user_id """
         if not isinstance(user_id, str):
             return (None)
-        session_id = uuid4()
-        SessionAuth.user_id_by_session_id[str(session_id)] = user_id
-        return (str(session_id))
+        session_id = str(uuid4())
+        SessionAuth.user_id_by_session_id[session_id] = user_id
+        return (session_id)
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
         """ Returns a User ID based on a Session ID """
