@@ -7,6 +7,7 @@ PATHS=(
     "api/v1/views/index.py"
     "api/v1/views/users.py"
     "api/v1/views/session_auth.py"
+    "api/v1/auth/session_exp_auth.py"
 )
 
 pycodestyle "${PATHS[@]}"
