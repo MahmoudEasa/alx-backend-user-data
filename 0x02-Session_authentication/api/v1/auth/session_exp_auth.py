@@ -8,6 +8,8 @@ from api.v1.auth.session_auth import SessionAuth
 class SessionExpAuth(SessionAuth):
     """ Session expiration Class """
     def __init__(self) -> None:
+        """ Initial Function """
+        super().__init__()
         try:
             self.session_duration = int(getenv("SESSION_DURATION", '0'))
         except Exception:
