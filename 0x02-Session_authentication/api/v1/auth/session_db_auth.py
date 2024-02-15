@@ -29,12 +29,6 @@ class SessionDBAuth(SessionExpAuth):
 
         if not len(sessions):
             return (None)
-
-        current_time = datetime.now()
-        created_at = sessions[0].created_at
-        expire = created_at + timedelta(seconds=self.session_duration)
-        if expire < current_time:
-            return (None)
         return (sessions[0].user_id)
 
     def destroy_session(self, request=None) -> bool:
