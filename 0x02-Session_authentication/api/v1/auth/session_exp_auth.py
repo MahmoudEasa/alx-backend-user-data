@@ -2,7 +2,7 @@
 """ Manage the API authentication """
 from datetime import datetime, timedelta
 from os import getenv
-from api.v1.auth.session_auth import SessionAuth
+from .session_auth import SessionAuth
 
 
 class SessionExpAuth(SessionAuth):
@@ -29,9 +29,6 @@ class SessionExpAuth(SessionAuth):
 
     def user_id_for_session_id(self, session_id=None) -> str:
         """  Return user_id from the session dictionary """
-        if not session_id:
-            return (None)
-
         session_obj = self.user_id_by_session_id.get(session_id)
         if not session_obj:
             return (None)
