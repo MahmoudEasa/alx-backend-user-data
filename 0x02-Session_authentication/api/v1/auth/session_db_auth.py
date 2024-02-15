@@ -30,7 +30,7 @@ class SessionDBAuth(SessionExpAuth):
         if not len(sessions):
             return (None)
 
-        current_time = datetime.utcnow()
+        current_time = datetime.now()
         created_at = sessions[0].created_at
         expire = created_at + timedelta(seconds=self.session_duration)
         if expire < current_time:
