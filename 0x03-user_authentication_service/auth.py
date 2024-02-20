@@ -54,7 +54,7 @@ class Auth:
             return (session_id)
         except Exception:
             return (None)
-        
+
     def get_user_from_session_id(self, session_id: str) -> Union[User | None]:
         """ Get User from Session ID """
         try:
