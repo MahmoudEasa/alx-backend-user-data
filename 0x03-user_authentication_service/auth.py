@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Auth model
 """
-from typing import Union
 import bcrypt
 from db import DB
 from user import User
@@ -55,7 +54,7 @@ class Auth:
         except Exception:
             return (None)
 
-    def get_user_from_session_id(self, session_id: str) -> Union[User | None]:
+    def get_user_from_session_id(self, session_id: str) -> User | None:
         """ Get User from Session ID """
         try:
             return (self._db.find_user_by(session_id=session_id))
