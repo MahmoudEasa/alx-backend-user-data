@@ -53,8 +53,8 @@ class DB:
         """ Method to Update User """
         user = self.find_user_by(id=user_id)
         for key, val in kwargs.items():
-            try:
+            if hasattr(user, key):
                 setattr(user, key, val)
-            except ValueError:
+            else:
                 raise (ValueError)
         self._session.commit()
