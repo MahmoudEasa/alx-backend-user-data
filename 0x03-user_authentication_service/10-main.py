@@ -19,3 +19,6 @@ print(user.session_id)
 
 user = auth.get_user_from_session_id("session_id")
 print(user)
+
+user = auth.get_reset_password_token(email)
+print(user)
